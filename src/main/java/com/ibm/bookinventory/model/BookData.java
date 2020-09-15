@@ -1,6 +1,15 @@
 package com.ibm.bookinventory.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.bson.types.ObjectId;
+
+@Document(collection = "Book")
 public class BookData {
+	
+	@Id
+	private ObjectId _id;
+	
 	private String bookType;
 	private String isbn;
 	private String title;

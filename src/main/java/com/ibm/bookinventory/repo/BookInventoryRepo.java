@@ -1,11 +1,12 @@
 package com.ibm.bookinventory.repo;
 
-import java.util.Collection;
-
+import org.springframework.stereotype.Repository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import com.ibm.bookinventory.model.BookData;
 
-public interface BookInventoryRepo {
-	
-	public Collection<BookData> getBooks();
+@Repository
+public interface BookInventoryRepo extends MongoRepository<BookData, Long> {
+
+	public BookData findByIsbn(String isbn);
 	
 }

@@ -21,10 +21,18 @@ public class BookInventoryServiceImpl implements BookInventoryService {
 	@Override
 	public Collection<BookData> getBooks() {
 		
-		Collection<BookData> books = this.bookInventoryRepo.getBooks();
+		Collection<BookData> books = this.bookInventoryRepo.findAll();
 		
 		// No business logic anymore
 		
 		return books;
+	}
+
+	@Override
+	public BookData getBook(String isbn) {
+
+		BookData book = this.bookInventoryRepo.findByIsbn(isbn);
+		
+		return book;
 	}
 }

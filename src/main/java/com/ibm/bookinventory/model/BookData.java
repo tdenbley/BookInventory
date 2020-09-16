@@ -4,13 +4,17 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.bson.types.ObjectId;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Document(collection = "Book")
 public class BookData {
 	
+	@JsonIgnore
 	@Id
 	private ObjectId _id;
-	
+	   
 	private String bookType;
+	
 	private String isbn;
 	private String title;
 	private String author;
@@ -63,10 +67,7 @@ public class BookData {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((author == null) ? 0 : author.hashCode());
-		result = prime * result + ((bookType == null) ? 0 : bookType.hashCode());
 		result = prime * result + ((isbn == null) ? 0 : isbn.hashCode());
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 
@@ -79,26 +80,25 @@ public class BookData {
 		if (getClass() != obj.getClass())
 			return false;
 		BookData other = (BookData) obj;
-		if (author == null) {
-			if (other.author != null)
-				return false;
-		} else if (!author.equals(other.author))
-			return false;
-		if (bookType == null) {
-			if (other.bookType != null)
-				return false;
-		} else if (!bookType.equals(other.bookType))
-			return false;
 		if (isbn == null) {
 			if (other.isbn != null)
 				return false;
 		} else if (!isbn.equals(other.isbn))
 			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "BookData [_id=" + _id + ", bookType=" + bookType + ", isbn=" + isbn + ", title=" + title + ", author="
+				+ author + "]";
+	}
+
+	public ObjectId get_id() {
+		return _id;
+	}
+
+	public void set_id(ObjectId _id) {
+		this._id = _id;
 	}
 }

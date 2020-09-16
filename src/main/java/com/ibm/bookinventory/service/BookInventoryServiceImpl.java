@@ -17,6 +17,14 @@ public class BookInventoryServiceImpl implements BookInventoryService {
 
 	public BookInventoryServiceImpl() {
 	}
+	
+	@Override
+	public BookData getBook(String isbn) {
+		
+		BookData book = this.bookInventoryRepo.findByIsbn(isbn);
+	
+		return book;
+	}
 
 	@Override
 	public Collection<BookData> getBooks() {
@@ -26,13 +34,5 @@ public class BookInventoryServiceImpl implements BookInventoryService {
 		// No business logic anymore
 		
 		return books;
-	}
-
-	@Override
-	public BookData getBook(String isbn) {
-
-		BookData book = this.bookInventoryRepo.findByIsbn(isbn);
-		
-		return book;
 	}
 }

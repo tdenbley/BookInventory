@@ -10,13 +10,16 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ibm</groupId>
-	<artifactId>bookinventory</artifactId>
+	<artifactId>BookInventory</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bookinventory</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>11</java.version>
+<!-- 		<java.version>11</java.version>  
+-->
+		<maven.compiler.source>8</maven.compiler.source>
+		<maven.compiler.target>8</maven.compiler.target>
 	</properties>
 
 	<dependencies>

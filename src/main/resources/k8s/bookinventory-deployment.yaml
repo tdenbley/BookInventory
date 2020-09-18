@@ -1,0 +1,49 @@
+--- 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: bookinventorydeployment
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: bookinventory
+  strategy: 
+    type: Recreate
+  template: 
+    metadata: 
+      labels: 
+        app: bookinventory
+    spec: 
+      containers: 
+        - 
+          image: "us.icr.io/tdenbley/bookinventory:1.0"
+          imagePullPolicy: Always
+          livenessProbe: 
+            httpGet: 
+              path: /actuator/health
+              port: 9002
+            timeoutSeconds: 4
+          name: bookinventory
+          ports: 
+            - 
+              containerPort: 9002
+          readinessProbe: 
+            httpGet: 
+              path: /actuator/health
+              port: 9002
+            timeoutSeconds: 4  
+          volumeMounts: 
+            - 
+              mountPath: /config
+              name: bookinventoryvolume
+      restartPolicy: Always
+      volumes: 
+        - 
+          configMap: 
+            items: 
+              - 
+                key: application.properties
+                path: application.properties
+            name: bookinventorycm
+          name: bookinventoryvolume
